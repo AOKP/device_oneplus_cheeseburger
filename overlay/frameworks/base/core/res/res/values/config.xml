@@ -54,12 +54,9 @@
         <item>255</item>
     </integer-array>
 
-    <!-- Stability requirements in milliseconds for accepting a new brightness level.  This is used
-         for debouncing the light sensor.  Different constants are used to debounce the light sensor
-         when adapting to brighter or darker environments.  This parameter controls how quickly
-         brightness changes occur in response to an observed change in light level that exceeds the
-         hysteresis threshold. -->
-    <integer name="config_autoBrightnessBrighteningLightDebounce">2000</integer>
+    <!-- OOS brightness tweaks -->
+    <!--<integer name="config_autoBrightnessBrighteningLightFastDebounce">500</integer>-->
+    <integer name="config_autoBrightnessBrighteningLightDebounce">1000</integer>
     <integer name="config_autoBrightnessDarkeningLightDebounce">4000</integer>
 
     <!-- Minimum screen brightness allowed by the power manager. -->
@@ -107,20 +104,6 @@
     <!-- Set to true to add links to Cell Broadcast app from Settings and MMS app. -->
     <bool name="config_cellBroadcastAppLinks">true</bool>
 
-    <!-- Hardware keys present on the device, stored as a bit field.
-         This integer should equal the sum of the corresponding value for each
-         of the following keys present:
-             1 - Home
-             2 - Back
-             4 - Menu
-             8 - Assistant (search)
-            16 - App switch
-            32 - Camera
-            64 - Volume rocker
-         For example, a device with Home, Back and Menu keys would set this
-         config to 7. -->
-    <integer name="config_deviceHardwareKeys">83</integer>
-
     <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
          of the following keys present:
@@ -132,8 +115,8 @@
             32 - Camera
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
-         config to 7. -->
-    <integer name="config_deviceHardwareWakeKeys">64</integer>
+         config to 7. 
+    <integer name="config_deviceHardwareWakeKeys">64</integer>-->
 
     <!-- Control the behavior when the user long presses the home button
             0 - Nothing
@@ -156,8 +139,7 @@
             5 - In-app Search
          This needs to match the constants in
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
-    -->
-    <integer name="config_longPressOnAppSwitchBehavior">1</integer>
+    <integer name="config_longPressOnAppSwitchBehavior">1</integer>-->
 
     <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
     <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
@@ -302,6 +284,11 @@
          The default is false. -->
     <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
 
+    <!-- Default value for proximity check on screen wake
+         NOTE ! - Enable for devices that have a fast response
+         proximity sensor (ideally < 300ms) -->
+    <bool name="config_proximityCheckOnWake">true</bool>
+
     <!-- Is the device capable of hot swapping an ICC Card -->
     <bool name="config_hotswapCapable">true</bool>
 
@@ -329,7 +316,6 @@
 
     <!--  Maximum number of supported users -->
     <integer name="config_multiuserMaximumUsers">4</integer>
-
     <!--  Whether Multiuser UI should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
 
@@ -337,7 +323,6 @@
     state changes. Voice radio tech change will always trigger an update of
     phone object irrespective of this config -->
     <bool name="config_switch_phone_on_voice_reg_state_change">false</bool>
-
     <!--  Define Google play service package for FRP-->
     <string name="config_persistentDataPackageName" translatable="false">com.google.android.gms</string>
 
@@ -349,6 +334,12 @@
     <!-- If true, the doze component is not started until after the screen has been
           turned off and the screen off animation has been performed. -->
     <bool name="config_dozeAfterScreenOff">true</bool>
+
+    <!-- Doze: should the tilt sensor be used as a pulse signal. -->
+    <bool name="config_dozePulseTilt">true</bool>
+
+    <!-- Doze: should the proximity sensor (handwave / pocket mode) be used as a pulse signal. -->
+    <bool name="config_dozePulseProximity">true</bool>
 
     <!-- Power Management: Specifies whether to decouple the interactive state of the
          device from the display on/off state.
@@ -406,6 +397,9 @@
     <string name="config_networkLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
     <string name="config_fusedLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
 
+    <!-- Enable blur support 
+    <bool name="config_uiBlurEnabled">true</bool>-->
+
     <!-- Default list of files pinned by the Pinner Service -->
     <string-array translatable="false" name="config_defaultPinnerServiceFiles">
         <item>"/system/framework/arm64/boot-framework.oat"</item>
@@ -414,8 +408,15 @@
         <item>"/system/framework/arm64/boot-core-libart.oat"</item>
    </string-array>
 
-    <!-- Whether notify fingerprint client of successful cancelled authentication -->
-    <bool name="config_notifyClientOnFingerprintCancelSuccess">true</bool>
+    <!-- Whether safe headphone volume is enabled or not (country specific). -->
+    <bool name="config_safe_media_volume_enabled">false</bool>
+
+    <!-- call removeCient in cancelAuthentification after stop to
+        avoid 3s delay for certain fpc HALs -->
+    <bool name="config_fingerprintRemoveClientOnCancel">true</bool>
+
+    <!-- True if the device supports Sustained Performance Mode-->
+    <bool name="config_sustainedPerformanceModeSupported">true</bool>
 
     <!-- Device configuration setting the minfree tunable in the lowmemorykiller in the kernel.
          A high value will cause the lowmemorykiller to fire earlier, keeping more memory
@@ -434,5 +435,4 @@
          value chosen by ActivityManager based on screen size.  0 prevents keeping any extra
          memory over what the kernel keeps by default.  -1 keeps the default. -->
     <integer name="config_extraFreeKbytesAbsolute">40960</integer>
-
 </resources>
