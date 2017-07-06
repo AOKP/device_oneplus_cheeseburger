@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2014 The CyanogenMod Project
+ *           (C) 2017 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,17 +30,23 @@ import org.cyanogenmod.internal.util.FileUtils;
 
 public class KeyDisabler {
 
-    private static String CONTROL_PATH = "/proc/touchpanel/capacitive_keys_enable";
+    private static String CONTROL_PATH = "/proc/touchpanel/key_disable";
+    private static String FPC_PATH = "/sys/module/fpc1020_tee/parameters/ignor_home_for_ESD";
 
     public static boolean isSupported() {
-        return FileUtils.isFileWritable(CONTROL_PATH);
+        return FileUtils.isFileWritable(CONTROL_PATH) &&
+                FileUtils.isFileWritable(FPC_PATH);
     }
 
     public static boolean isActive() {
-        return FileUtils.readOneLine(CONTROL_PATH).equals("0");
+        return FileUtils.readOneLine(CONTROL_PATH).equals("1") ||
+                FileUtils.readOneLine(FPC_PATH).equals("1");
     }
 
     public static boolean setActive(boolean state) {
-        return FileUtils.writeLine(CONTROL_PATH, (state ? "0" : "1"));
+        String value = state ? "1" : "0";
+        boolean control = FileUtils.writeLine(CONTROL_PATH, value);
+        boolean fpc =  FileUtils.writeLine(FPC_PATH, value);
+        return control && fpc;
     }
 }
