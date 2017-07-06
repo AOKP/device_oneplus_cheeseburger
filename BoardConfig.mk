@@ -33,7 +33,7 @@ BOARD_VENDOR := oneplus
 
 # Assertions
 TARGET_BOARD_INFO_FILE ?= $(PLATFORM_PATH)/board-info.txt
-TARGET_OTA_ASSERT_DEVICE := cheeseburger
+TARGET_OTA_ASSERT_DEVICE := OnePlus5,cheeseburger,oneplus5,op5,A5000
 
 # Use Snapdragon LLVM, if available
 TARGET_USE_SDCLANG := true
@@ -76,7 +76,7 @@ TARGET_KERNEL_APPEND_DTB := true
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/oneplus/msm8998
-TARGET_KERNEL_CONFIG := mokee_cheeseburger_defconfig
+TARGET_KERNEL_CONFIG := aokp_cheeseburger_defconfig
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 
 # HAX: Remove AOSP
