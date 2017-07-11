@@ -135,12 +135,8 @@ PRODUCT_COPY_FILES += \
     external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
 
 # Camera
-PRODUCT_PACKAGES += \
-    Snap
-
-# Configpanel
-PRODUCT_PACKAGES += \
-    ConfigPanel
+#PRODUCT_PACKAGES += \
+#    Snap
 
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
@@ -156,10 +152,6 @@ PRODUCT_PACKAGES += \
     memtrack.msm8998 \
     liboverlay \
     libtinyxml
-
-# Doze mode
-PRODUCT_PACKAGES += \
-    OneplusDoze
 
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
@@ -295,6 +287,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libvehiclenetwork-native
 
+# TWRP
+ifeq ($(RECOVERY_VARIANT),twrp)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/recovery/root/init.recovery.qcom.rc:recovery/root/init.recovery.qcom.rc \
+    $(LOCAL_PATH)/recovery/root/init.recovery.usb.rc:recovery/root/init.recovery.usb.rc \
+    $(LOCAL_PATH)/recovery/root/twrp.fstab:recovery/root/etc/twrp.fstab
+endif
+
 # Wifi
 PRODUCT_PACKAGES += \
     ipacm \
@@ -317,13 +317,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
-
-# For userdebug builds
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.secure=0 \
-    ro.adb.secure=0 \
-    ro.debuggable=1 \
-    persist.service.adb.enable=1
 
 # Inherit from oppo-common
 $(call inherit-product, device/oppo/common/common.mk)
