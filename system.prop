@@ -1,5 +1,8 @@
 ro.display.series=OnePlus 5
 
+#AOKP Device Maintainer
+ro.aokp.maintainer=Santiago Villar
+
 # AANC
 persist.aanc.enable=true
 
