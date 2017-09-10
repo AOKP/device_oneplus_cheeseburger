@@ -108,7 +108,9 @@ PRODUCT_CHARACTERISTICS := nosdcard
 
 # Audio
 PRODUCT_PACKAGES += \
-    audiod \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio@2.0-service \
+    android.hardware.audio.effect@2.0-impl \
     audio.a2dp.default \
     audio.primary.msm8998 \
     audio.r_submix.default \
@@ -145,13 +147,19 @@ PRODUCT_COPY_FILES += \
     $(TOPDIR)frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml \
 
 # ANT+
-PRODUCT_PACKAGES += \
-    AntHalService \
-    com.dsi.ant.antradio_library \
-    libantradio
+#PRODUCT_PACKAGES += \
+#    AntHalService \
+#    com.dsi.ant.antradio_library \
+#    libantradio
 
-PRODUCT_COPY_FILES += \
-    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
+#PRODUCT_COPY_FILES += \
+#    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
+
+# Bluetooth
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service \
+    libbt-vendor \
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -165,28 +173,48 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.composer@2.1-service \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.configstore@1.0-service \
+    android.hardware.memtrack@1.0-impl \
+    android.hardware.memtrack@1.0-service \
     copybit.msm8998 \
     gralloc.msm8998 \
     hwcomposer.msm8998 \
     memtrack.msm8998 \
+    libgenlock \
     liboverlay \
     libtinyxml
 
 # Doze mode
+#PRODUCT_PACKAGES += \
+#    OneplusDoze
+
+# DRM
 PRODUCT_PACKAGES += \
-    OneplusDoze
+    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-service \
+    android.hardware.drm@1.0-service.widevine \
 
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.1-service \
     fingerprintd \
-    OneplusPocketMode
 
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += \
     fs_config_files
 
+# Gatekeeper HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-impl
+
 # GPS
 PRODUCT_PACKAGES += \
+    android.hardware.gnss@1.0-impl \
     gps.msm8998 \
     gps.conf \
     libgnsspps \
@@ -198,6 +226,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/lowi.conf:system/vendor/etc/lowi.conf \
     $(LOCAL_PATH)/gps/etc/sap.conf:system/vendor/etc/sap.conf \
     $(LOCAL_PATH)/gps/etc/xtwifi.conf:system/vendor/etc/xtwifi.conf
+
+# Healthd
+#PRODUCT_PACKAGES += \
+#    android.hardware.health@1.0-convert \
+#    android.hardware.health@1.0-impl \
+#    android.hardware.health@1.0-service \
 
 # IPv6
 PRODUCT_PACKAGES += \
@@ -217,23 +251,33 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/fpc1020.kl:system/usr/keylayout/fpc1020.kl \
     $(LOCAL_PATH)/keylayout/synaptics.kl:system/usr/keylayout/synaptics.kl
 
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl
+
 # Lights
 PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-impl \
     lights.msm8998
 
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
-    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+    $(LOCAL_PATH)/configs/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
+# Netutils
+PRODUCT_PACKAGES += \
+    netutils-wrapper-1.0
+
 # NFC
 PRODUCT_PACKAGES += \
+    android.hardware.nfc@1.0-impl \
     com.android.nfc_extras \
     com.nxp.nfc.nq \
     nfc_nci.nqx.default \
@@ -250,6 +294,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
     libextmedia_jni \
+    libhypv_intercept \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
@@ -261,6 +306,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
+    android.hardware.power@1.0-impl \
     power.msm8998
 
 # QMI
@@ -299,18 +345,46 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     librecovery_updater_cheeseburger
 
+# RenderScript HAL
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
+
 # RIL
 PRODUCT_PACKAGES += \
     librmnetctl \
     libxml2 \
     libprotobuf-cpp-full
 
+# Seccomp policy
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/seccomp_policy/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
+    $(LOCAL_PATH)/seccomp_policy/mediaextractor-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy \
+
 # Sensors
 PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl \
     sensors.msm8998
+
+# Shims
+PRODUCT_PACKAGES += \
+    libshims_system_properties
+
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@1.0-impl \
+
+# USB
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service \
+    com.android.future.usb.accessory
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl
 
 # Wifi
 PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
     ipacm \
     ipacm-diag \
     IPACM_cfg.xml \
@@ -318,7 +392,7 @@ PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
     libwpa_client \
     hostapd \
-    dhcpcd.conf \
+    wificond \
     wpa_supplicant \
     wpa_supplicant.conf
 
@@ -328,7 +402,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/hostapd.deny:system/etc/hostapd/hostapd.deny \
     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
 # Inherit from oppo-common
 $(call inherit-product, device/oppo/common/common.mk)
