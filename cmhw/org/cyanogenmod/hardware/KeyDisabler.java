@@ -35,18 +35,19 @@ public class KeyDisabler {
 
     public static boolean isSupported() {
         return FileUtils.isFileWritable(CONTROL_PATH) &&
-                FileUtils.isFileWritable(FPC_PATH);
+                   FileUtils.isFileWritable(FPC_PATH);
     }
 
     public static boolean isActive() {
         return FileUtils.readOneLine(CONTROL_PATH).equals("1") ||
-                FileUtils.readOneLine(FPC_PATH).equals("1");
+                   FileUtils.readOneLine(FPC_PATH).equals("1");
     }
 
     public static boolean setActive(boolean state) {
         String value = state ? "1" : "0";
         boolean control = FileUtils.writeLine(CONTROL_PATH, value);
         boolean fpc =  FileUtils.writeLine(FPC_PATH, value);
+
         return control && fpc;
     }
 }
