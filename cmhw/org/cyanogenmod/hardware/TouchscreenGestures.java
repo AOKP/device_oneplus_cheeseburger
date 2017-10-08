@@ -39,36 +39,36 @@ import cyanogenmod.hardware.TouchscreenGesture;
 public class TouchscreenGestures {
 
     private static final String[] GESTURE_PATHS = {
+        "/proc/touchpanel/double_swipe_enable",
         "/proc/touchpanel/up_arrow_enable",
+        "/proc/touchpanel/right_arrow_enable",
         "/proc/touchpanel/down_arrow_enable",
         "/proc/touchpanel/left_arrow_enable",
-        "/proc/touchpanel/right_arrow_enable",
-        "/proc/touchpanel/double_swipe_enable",
         "/proc/touchpanel/up_swipe_enable",
+        "/proc/touchpanel/right_swipe_enable",
         "/proc/touchpanel/down_swipe_enable",
         "/proc/touchpanel/left_swipe_enable",
-        "/proc/touchpanel/right_swipe_enable",
-        "/proc/touchpanel/letter_o_enable",
-        "/proc/touchpanel/letter_w_enable",
         "/proc/touchpanel/letter_m_enable",
+        "/proc/touchpanel/letter_o_enable",
         "/proc/touchpanel/letter_s_enable",
+        "/proc/touchpanel/letter_w_enable",
     };
 
     // Id, name, keycode
     private static final TouchscreenGesture[] TOUCHSCREEN_GESTURES = {
-        new TouchscreenGesture(0, "up_arrow", 252),
-        new TouchscreenGesture(1, "down_arrow", 255),
-        new TouchscreenGesture(2, "left_arrow", 253),
-        new TouchscreenGesture(3, "right_arrow", 254),
-        new TouchscreenGesture(4, "two_finger_down_swipe", 251),
-        new TouchscreenGesture(5, "one_finger_up_swipe", 66),
-        new TouchscreenGesture(6, "one_finger_down_swipe", 65),
-        new TouchscreenGesture(7, "one_finger_left_swipe", 64),
-        new TouchscreenGesture(8, "one_finger_right_swipe", 63),
-        new TouchscreenGesture(9, "letter_o", 250),
-        new TouchscreenGesture(10, "letter_w", 246),
-        new TouchscreenGesture(11, "letter_m", 247),
-        new TouchscreenGesture(12, "letter_s", 248),
+        new TouchscreenGesture(0, "Two fingers down swipe", 251),
+        new TouchscreenGesture(1, "Up arrow", 252),
+        new TouchscreenGesture(2, "Right arrow", 254),
+        new TouchscreenGesture(3, "Down arrow", 255),
+        new TouchscreenGesture(4, "Left arrow", 253),
+        new TouchscreenGesture(5, "One finger up swipe", 66),
+        new TouchscreenGesture(6, "One finger right swipe", 65),
+        new TouchscreenGesture(7, "One finger down swipe", 64),
+        new TouchscreenGesture(8, "One finger left swipe", 63),
+        new TouchscreenGesture(9, "Letter M", 247),
+        new TouchscreenGesture(10, "Letter O", 250),
+        new TouchscreenGesture(11, "Letter S", 248),
+        new TouchscreenGesture(12, "Letter W", 246),
     };
 
     /**

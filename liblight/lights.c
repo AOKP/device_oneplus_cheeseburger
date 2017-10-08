@@ -2,6 +2,7 @@
  * Copyright (C) 2008 The Android Open Source Project
  * Copyright (C) 2014 The Linux Foundation. All rights reserved.
  * Copyright (C) 2015 The CyanogenMod Project
+ * Copyright (C) 2017 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -108,6 +109,9 @@ char const*const GREEN_BLINK_FILE
 
 char const*const BLUE_BLINK_FILE
         = "/sys/class/leds/blue/blink";
+
+char const*const RGB_BLINK_FILE
+        = "/sys/class/leds/rgb/rgb_blink";
 
 #define RAMP_SIZE 8
 static int BRIGHTNESS_RAMP[RAMP_SIZE]
@@ -267,9 +271,7 @@ set_speaker_light_locked(struct light_device_t* dev,
     blink = onMS > 0 && offMS > 0;
 
     // disable all blinking to start
-    write_int(RED_BLINK_FILE, 0);
-    write_int(GREEN_BLINK_FILE, 0);
-    write_int(BLUE_BLINK_FILE, 0);
+    write_int(RGB_BLINK_FILE, 0);
 
     if (blink) {
         stepDuration = RAMP_STEP_DURATION;
@@ -313,10 +315,14 @@ set_speaker_light_locked(struct light_device_t* dev,
         free(duty);
 
         // start the party
-        write_int(RED_BLINK_FILE, red);
-        write_int(GREEN_BLINK_FILE, green);
-        write_int(BLUE_BLINK_FILE, blue);
+        write_int(RGB_BLINK_FILE, 1);
+
     } else {
+        if (red == 0 && green == 0 && blue == 0) {
+            write_int(RED_BLINK_FILE, 0);
+            write_int(GREEN_BLINK_FILE, 0);
+            write_int(BLUE_BLINK_FILE, 0);
+        }
         write_int(RED_LED_FILE, red);
         write_int(GREEN_LED_FILE, green);
         write_int(BLUE_LED_FILE, blue);
@@ -468,6 +474,6 @@ struct hw_module_t HAL_MODULE_INFO_SYM = {
     .version_minor = 0,
     .id = LIGHTS_HARDWARE_MODULE_ID,
     .name = "Lights Module",
-    .author = "The CyanogenMod Project",
+    .author = "The LineageOS Project",
     .methods = &lights_module_methods,
 };
