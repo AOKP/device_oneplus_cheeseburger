@@ -1,3 +1,10 @@
+# Alipay
+bin/ifaadaemon
+lib/libteeclientjni.so
+lib64/libteeclientjni.so
+lib64/libteeclientjniv2.so
+-priv-app/IFAAService/IFAAService.apk
+
 # Audio
 etc/firmware/tfa98xx.cnt
 
@@ -14,7 +21,7 @@ etc/acdbdata/adsp_avs_config.acdb
 
 # Camera
 bin/mm-qcamera-daemon
-etc/camera/camera_config.xml
+etc/camera/camera_config.xml|d601a753134ef75eb36df501b1706d5325f8ac6a
 etc/camera/imx350_chromatix.xml
 etc/camera/imx371_chromatix.xml
 etc/camera/imx398_chromatix.xml
@@ -26,10 +33,14 @@ lib/libqomx_core.so
 lib/libVDBlurlessAPI.so
 lib/libVDHDRAPI.so
 vendor/lib/libarcsoft_dualcam_refocus.so
+vendor/lib/libblurbuster.so
 vendor/lib/libcamera_bokeh_wrapper.so
 vendor/lib/libcdsprpc.so
 vendor/lib/libchromaflash.so
 vendor/lib/libcvface_api.so
+vendor/lib/libdczoom.so
+vendor/lib/libdualcameraddm.so
+vendor/lib/libfiltergenerator.so
 vendor/lib/libflash_pmic.so
 vendor/lib/libfusionLibrary.so
 vendor/lib/libjpegdhw.so
@@ -109,10 +120,37 @@ vendor/lib/libSonyIMX371RmscLibrary.so
 vendor/lib/libtrueportrait.so
 vendor/lib/libubifocus.so
 vendor/lib64/libcdsprpc.so
+vendor/lib64/libchromaflash.so
+vendor/lib64/liboptizoom.so
+vendor/lib64/libseemore.so
+vendor/lib64/libblurbuster.so
 
 # Camera actuators
 vendor/lib/libactuator_lc898217xc_imx350.so
 vendor/lib/libactuator_lc898217xc_imx398.so
+
+# Camera app modules
+vendor/lib/libjni_optizoom.so
+vendor/lib/libjni_trackingfocus.so
+vendor/lib/libjni_chromaflash.so
+vendor/lib/libjni_makeupV2.so
+vendor/lib/libjni_panorama.so
+vendor/lib/libjni_ubifocus.so
+vendor/lib/libjni_blurbuster.so
+vendor/lib/libjni_dualcamera.so
+vendor/lib/libjni_filtergenerator.so
+vendor/lib/libjni_stillmore.so
+vendor/lib/libjni_sharpshooter.so
+vendor/lib64/libjni_optizoom.so
+vendor/lib64/libjni_trackingfocus.so
+vendor/lib64/libjni_chromaflash.so
+vendor/lib64/libjni_makeupV2.so
+vendor/lib64/libjni_panorama.so
+vendor/lib64/libjni_ubifocus.so
+vendor/lib64/libjni_blurbuster.so
+vendor/lib64/libjni_stillmore.so
+vendor/lib64/libjni_clearsight.so
+vendor/lib64/libjni_sharpshooter.so
 
 # Camera chromatix
 vendor/lib/libchromatix_imx350_3a_1536x866_30fps_video.so
@@ -165,6 +203,7 @@ vendor/lib/libchromatix_imx398_3a_4656x3496_30fps_preview.so
 vendor/lib/libchromatix_imx398_3a_hq.so
 vendor/lib/libchromatix_imx398_3a_manual.so
 vendor/lib/libchromatix_imx398_3a_panorama.so
+vendor/lib/libchromatix_imx398_3a_wechat_preview.so
 vendor/lib/libchromatix_imx398_common.so
 vendor/lib/libchromatix_imx398_cpp_1476x834_120fps_video.so
 vendor/lib/libchromatix_imx398_cpp_2328x1304_60fps_video.so
@@ -187,7 +226,9 @@ vendor/lib/libchromatix_imx398_isp_4656x3496_30fps_preview.so
 vendor/lib/libchromatix_imx398_isp_4656x3496_30fps_snapshot.so
 vendor/lib/libchromatix_imx398_isp_manual.so
 vendor/lib/libchromatix_imx398_isp_panorama.so
+vendor/lib/libchromatix_imx398_isp_zsl_snapshot.so
 vendor/lib/libchromatix_imx398_postproc.so
+vendor/lib/libchromatix_imx398_preview_1080p_cpp.so
 
 # Camera postprocessing
 etc/fsync_db.config
@@ -315,3 +356,8 @@ etc/firmware/mbn_ota/mbn_ota.txt
 # Sensors
 etc/sensors/hals.conf
 etc/sensors/sensor_def_qcomdev.conf
+
+# Touchscreen Firmware
+etc/firmware/tp/fw_synaptics_15801.img
+etc/firmware/tp/fw_synaptics_15801b.img
+etc/firmware/tp/fw_synaptics_16859.img
