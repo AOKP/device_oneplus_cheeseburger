@@ -12,36 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := camera_shim.cpp
-LOCAL_MODULE := libcamera_shim
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LOCAL_32_BIT_ONLY := true
+LOCAL_C_INCLUDES := \
+    frameworks/av/include
 
-include $(BUILD_SHARED_LIBRARY)
+LOCAL_SRC_FILES := \
+    CameraParameters.cpp
 
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := DisplayEventReceiver.c
-LOCAL_MODULE := libcamera_shim_display
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+LOCAL_MODULE := libcamera_parameters_ext
 LOCAL_MODULE_TAGS := optional
-include $(BUILD_SHARED_LIBRARY)
 
-# Camera
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := GraphicBuffer.cpp
-LOCAL_SHARED_LIBRARIES := libui
-LOCAL_MODULE := libcamera_shim_buffer
-LOCAL_MODULE_TAGS := optional
-include $(BUILD_SHARED_LIBRARY)
-
-# Camera
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := GraphicBufferSmall.cpp
-LOCAL_SHARED_LIBRARIES := libui
-LOCAL_MODULE := libcamera_shim_native
-LOCAL_MODULE_TAGS := optional
-include $(BUILD_SHARED_LIBRARY)
+include $(BUILD_STATIC_LIBRARY)
