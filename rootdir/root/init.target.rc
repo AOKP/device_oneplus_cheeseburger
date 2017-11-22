@@ -36,8 +36,8 @@ on early-init
     mkdir /dsp 0771 media media
 
 on fs
-    wait /dev/block/platform/soc/1da4000.ufshc
-    symlink /dev/block/platform/soc/1da4000.ufshc /dev/block/bootdevice
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
     mount_all fstab.qcom
     swapon_all fstab.qcom
 
@@ -47,7 +47,7 @@ on fs
 
     wait /dev/block/bootdevice/by-name/persist
     exec /system/bin/e2fsck -y /dev/block/bootdevice/by-name/persist
-    mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
+    mount ext4 /dev/block/bootdevice/by-name/persist /persist noatime nosuid nodev barrier=1
 
     mkdir /persist/data 0700 system system
     mkdir /persist/bms 0700 root system
@@ -71,6 +71,10 @@ on init
     write /dev/stune/system-background/schedtune.colocate 0
     write /dev/stune/foreground/schedtune.colocate 0
     write /dev/stune/top-app/schedtune.colocate 1
+
+    # ZRAM setup
+    write /sys/block/zram0/comp_algorithm lz4
+    write /proc/sys/vm/page-cluster 0
 
 on post-fs
     chown system system /proc/ship_mode
@@ -404,8 +408,8 @@ service mdtpd /system/vendor/bin/mdtpd
 service dashd /sbin/dashd
     class core
     critical
-    seclabel u:r:dashd:s0
     group root system
+    #seclabel u:r:dashd:s0
 
 service ifaadaemon /system/bin/ifaadaemon
     class late_start

@@ -35,6 +35,9 @@ BOARD_VENDOR := oneplus
 TARGET_BOARD_INFO_FILE ?= $(PLATFORM_PATH)/board-info.txt
 TARGET_OTA_ASSERT_DEVICE := cheeseburger
 
+# we are too big to fit in
+PRODUCT_SKIP_FINGERPRINT_FROM_FILE := true
+
 # Use Snapdragon LLVM, if available
 TARGET_USE_SDCLANG := true
 
@@ -67,6 +70,7 @@ TARGET_USES_64_BIT_BINDER := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 swiotlb=2048
+BOARD_KERNEL_CMDLINE += androidboot.configfs=true
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
@@ -79,6 +83,9 @@ TARGET_KERNEL_SOURCE := kernel/oneplus/msm8998
 TARGET_KERNEL_CONFIG := lineage_cheeseburger_defconfig
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 
+# REMOVE ASAP
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
 
@@ -90,6 +97,7 @@ BOARD_USES_ALSA_AUDIO := true
 
 BOARD_USES_SRS_TRUEMEDIA := false
 BOARD_SUPPORTS_SOUND_TRIGGER := false
+BOARD_SUPPORTS_SOUND_TRIGGER_HAL := false
 BOARD_SUPPORTS_QAHW := true
 
 AUDIO_FEATURE_ENABLED_COMPRESS_CAPTURE := false
@@ -111,7 +119,7 @@ AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
 AUDIO_FEATURE_ENABLED_SSR := false
 AUDIO_FEATURE_ENABLED_DTS_EAGLE := false
 AUDIO_FEATURE_ENABLED_HW_ACCELERATED_EFFECTS := false
-AUDIO_FEATURE_ENABLED_AUDIOSPHERE := true
+AUDIO_FEATURE_ENABLED_AUDIOSPHERE := false
 AUDIO_FEATURE_ENABLED_USB_TUNNEL_AUDIO := true
 AUDIO_FEATURE_ENABLED_SPLIT_A2DP := true
 AUDIO_FEATURE_ENABLED_3D_AUDIO := false
@@ -205,10 +213,17 @@ ifeq ($(HOST_OS),linux)
   endif
 endif
 
+# Filesystem
+TARGET_FS_CONFIG_GEN += $(PLATFORM_PATH)/config.fs
+
 # GPS
 TARGET_NO_RPC := true
 USE_DEVICE_SPECIFIC_GPS := true
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
+
+# HIDL
+DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/manifest.xml
+DEVICE_MATRIX_FILE := $(PLATFORM_PATH)/compatibility_matrix.xml
 
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
@@ -241,7 +256,7 @@ TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/recovery.fstab
-TARGET_RECOVERY_UI_LIB := librecovery_ui_msm
+#TARGET_RECOVERY_UI_LIB := librecovery_ui_msm
 BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Releasetools

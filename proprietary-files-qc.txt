@@ -76,11 +76,11 @@ etc/firmware/rampatch_tlv_2.1.tlv
 etc/firmware/rampatch_tlv_3.0.tlv
 etc/firmware/rampatch_tlv_3.2.tlv
 etc/firmware/rampatch_tlv.img
-vendor/lib/libbtnv.so
-vendor/lib64/libbtnv.so
+-vendor/lib/libbtnv.so
+-vendor/lib64/libbtnv.so
 
 # CNE
-bin/cnd
+bin/cnd|6e92413a8a0cc9467cc35ab7805ebcfa8874db1f
 etc/cne/andsfCne.xml
 etc/cne/SwimConfig.xml
 etc/cne/wqeclient/ATT/ATT_profile1.xml
@@ -104,7 +104,7 @@ etc/permissions/ConnectivityExt.xml
 framework/cneapiclient.jar
 framework/com.quicinc.cne.jar
 framework/ConnectivityExt.jar
--priv-app/CNEService/CNEService.apk
+#-priv-app/CNEService/CNEService.apk
 vendor/lib/libcne.so
 vendor/lib/libcneapiclient.so
 vendor/lib/libcneqmiutils.so
@@ -112,9 +112,10 @@ vendor/lib/libvendorconn.so
 vendor/lib/libwms.so
 vendor/lib/libwqe.so
 vendor/lib/libxml.so
-vendor/lib64/libcne.so
-vendor/lib64/libcneapiclient.so
+vendor/lib64/libcne.so|a38cf49ee5c42bc3efa9276d38c05e2232a9565e
+vendor/lib64/libcneapiclient.so|ebc1085bda166c21d33d724f6e83822497929399
 vendor/lib64/libcneqmiutils.so
+vendor/lib64/libprotobuf-cpp-lgcy.so|75b0bab57505c6be44748c207000fad72d322429
 vendor/lib64/libvendorconn.so
 vendor/lib64/libwms.so
 vendor/lib64/libwqe.so
@@ -129,7 +130,7 @@ etc/permissions/dpmapi.xml
 framework/com.qti.dpmframework.jar
 framework/dpmapi.jar
 framework/tcmclient.jar
--priv-app/dpmserviceapp/dpmserviceapp.apk
+#-priv-app/dpmserviceapp/dpmserviceapp.apk
 vendor/lib/libdpmctmgr.so
 vendor/lib/libdpmfdmgr.so
 vendor/lib/libdpmframework.so
@@ -309,9 +310,6 @@ vendor/lib64/libQtiTether.so
 bin/energy-awareness
 bin/msm_irqbalance
 
-# QCOM post_boot
-etc/init.qcom.post_boot.sh
-
 # Peripheral manager
 bin/pm-proxy
 bin/pm-service
@@ -397,7 +395,7 @@ vendor/lib64/libril-qc-qmi-1.so
 vendor/lib64/libril-qc-radioconfig.so
 vendor/lib64/libril-qcril-hook-oem.so
 vendor/lib64/librilqmiservices.so
-vendor/lib64/libsettings.so
+vendor/lib64/libsettings.so|51b4a8b53d40363ca4ab3fe0dbd6090893a60cd3
 vendor/lib64/libsystem_health_mon.so
 vendor/qcril.db
 
@@ -410,8 +408,8 @@ etc/permissions/imscm.xml
 etc/permissions/qti-vzw-ims-internal.xml
 framework/imscmlibrary.jar
 framework/rcsimssettings.jar
--vendor/app/ims/ims.apk
--vendor/app/imssettings/imssettings.apk
+#-vendor/app/ims/ims.apk
+#-vendor/app/imssettings/imssettings.apk
 vendor/framework/qti-vzw-ims-internal.jar
 vendor/lib64/lib-dplmedia.so
 vendor/lib64/lib-ims-rcscmjni.so
