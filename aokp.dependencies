@@ -1,0 +1,6 @@
+[
+  {
+    "repository": "device_oppo_common",
+    "target_path": "device/oppo/common"
+  }
+]
