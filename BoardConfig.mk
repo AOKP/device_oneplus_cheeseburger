@@ -40,5 +40,7 @@ TARGET_FS_CONFIG_GEN += $(DEVICE_PATH)/config.fs
 # Lineage Hardware
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/lineagehw
 
+ALLOW_MISSING_DEPENDENCIES=true
+
 # inherit from the proprietary version
 -include vendor/oneplus/cheeseburger/BoardConfigVendor.mk
