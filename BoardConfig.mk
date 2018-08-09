@@ -53,9 +53,7 @@ TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/oneplus/msm8998
 TARGET_KERNEL_CONFIG := lineage_oneplus5_defconfig
 TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_CLANG_VERSION := 7.0.2
-KBUILD_COMPILER_STRING := Android (4751641 based on r328903) clang version 7.0.2 (based on LLVM 7.0.2svn)
-export KBUILD_COMPILER_STRING
+TARGET_KERNEL_CLANG_DIR= prebuilts/clang/linux-x86/clang-4053586/bin
 
 # inherit from the proprietary version
 -include vendor/oneplus/cheeseburger/BoardConfigVendor.mk
