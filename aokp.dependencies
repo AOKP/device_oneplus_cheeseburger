@@ -1,13 +1,6 @@
 [
   {
     "repository": "device_oneplus_msm8998-common",
-    "target_path": "device/oneplus/msm8998-common",
-    "branch": "oreo"
-  },
-  {
-    "remote": "github",
-    "repository": "AICP/kernel_oneplus_msm8998",
-    "target_path": "kernel/oneplus/msm8998",
-    "branch": "o8.1-flash"
+    "target_path": "device/oneplus/msm8998-common"
   }
 ]

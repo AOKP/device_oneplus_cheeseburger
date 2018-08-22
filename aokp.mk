@@ -21,7 +21,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from cheeseburger device
 $(call inherit-product, device/oneplus/cheeseburger/device.mk)
 
-# Inherit some common Aokp stuff.
+# Inherit some common AOKP stuff.
 $(call inherit-product, vendor/aokp/configs/common_full_phone.mk)
 
 PRODUCT_NAME := aokp_cheeseburger
@@ -38,8 +38,8 @@ TARGET_VENDOR_DEVICE_NAME := OnePlus5
 PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=OnePlus5 PRODUCT_NAME=OnePlus5
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="OnePlus5-user 8.1.0 OPM1.171019.011 1 release-keys"
+    PRIVATE_BUILD_DESC="OnePlus5-user 8.1.0 OPM1.171019.011 1808081927 release-keys"
 
-BUILD_FINGERPRINT := OnePlus/OnePlus5/OnePlus5:8.1.0/OPM1.171019.011/04110400:user/release-keys
+BUILD_FINGERPRINT := OnePlus/OnePlus5/OnePlus5:8.1.0/OPM1.171019.011/1808081927:user/release-keys
 
 TARGET_VENDOR := oneplus
